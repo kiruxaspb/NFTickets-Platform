@@ -9,7 +9,6 @@ const ShowModalSlice = createSlice({
   initialState,
   reducers: {
     setShowModal(state, action) {
-      console.log(action.payload);
       state.showModal = action.payload;
     },
   },

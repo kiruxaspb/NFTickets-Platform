@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../style/style.scss';
 
-import { Navbar, Button, Modal } from '../components';
+import { Navbar, Button, Modal, Preloader } from '../components';
 
 function StartPage() {
   return (
@@ -10,6 +10,7 @@ function StartPage() {
       <div className="wrapper">
         <div className="container">
           <Navbar />
+          <Preloader />
           <div className="main_content">
             <h1>NFTickets</h1>
             <h2>
