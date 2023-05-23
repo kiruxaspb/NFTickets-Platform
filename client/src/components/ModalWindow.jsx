@@ -13,10 +13,6 @@ function Modal() {
   const isTrueQR = useSelector((state) => state.QRStateSlice.isTrue);
   const [currentImg, setCurrentImg] = React.useState(null);
 
-  React.useEffect(() => {
-    console.log('show', showModal);
-  }, [showModal]);
-
   const handleCloseModal = () => {
     dispatch(setShowModal(false));
   };
@@ -24,8 +20,6 @@ function Modal() {
   const handleOpenModal = () => {
     dispatch(setShowModal(true));
   };
-
-  console.log(isTrueQR);
 
   React.useEffect(() => {
     isTrueQR === true ? setCurrentImg(success) : setCurrentImg(error);

@@ -9,7 +9,6 @@ const QRStateSlice = createSlice({
   initialState,
   reducers: {
     setIsTrueQR(state, action) {
-      console.log(action.payload);
       state.isTrue = action.payload;
     },
   },

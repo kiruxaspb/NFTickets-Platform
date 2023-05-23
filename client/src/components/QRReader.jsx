@@ -32,20 +32,15 @@ const QRReader = () => {
 
   const handleResult = async (data) => {
     if (data) {
-      console.log(data);
       setResult(data?.text);
-
-      console.log(data?.text);
+      console.log(data);
 
       let balance = await nftTicketContract.methods.balanceOf(data?.text).call();
-      console.log(balance);
 
       if (balance >= 1) {
-        console.log('here');
         dispatch(setIsTrueQR(true));
         dispatch(setShowModal(true));
       } else {
-        console.log('here2');
         dispatch(setIsTrueQR(false));
         dispatch(setShowModal(true));
       }
