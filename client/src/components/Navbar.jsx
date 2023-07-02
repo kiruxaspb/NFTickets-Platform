@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 function Navbar() {
   const chains = [sepolia];
-  const projectId = 'bbc8b07dd28b44958655fcdf376567b9';
+  const projectId = '8b5b43fbbd61a2852c226ff2eee68ab9';
 
   const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);
   const wagmiConfig = createConfig({
@@ -41,11 +41,7 @@ function Navbar() {
           <Web3Button />
         </WagmiConfig>
       </nav>
-      <Web3Modal
-        // DEFAULT_PROJECT_ID={DEFAULT_PROJECT_ID}
-        projectId={projectId}
-        ethereumClient={ethereumClient}
-      />
+      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
     </>
   );
 }
