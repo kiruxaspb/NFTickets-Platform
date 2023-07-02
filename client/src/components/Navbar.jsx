@@ -9,12 +9,12 @@ import { Link } from 'react-router-dom';
 
 function Navbar() {
   const chains = [sepolia];
-  const DEFAULT_PROJECT_ID = 'bbc8b07dd28b44958655fcdf376567b9';
+  const projectId = 'bbc8b07dd28b44958655fcdf376567b9';
 
-  const { publicClient } = configureChains(chains, [w3mProvider({ DEFAULT_PROJECT_ID })]);
+  const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);
   const wagmiConfig = createConfig({
     autoConnect: true,
-    connectors: w3mConnectors({ DEFAULT_PROJECT_ID, version: 1, chains }),
+    connectors: w3mConnectors({ projectId, chains }),
     publicClient,
   });
   const ethereumClient = new EthereumClient(wagmiConfig, chains);
@@ -41,7 +41,11 @@ function Navbar() {
           <Web3Button />
         </WagmiConfig>
       </nav>
-      <Web3Modal DEFAULT_PROJECT_ID={DEFAULT_PROJECT_ID} ethereumClient={ethereumClient} />
+      <Web3Modal
+        // DEFAULT_PROJECT_ID={DEFAULT_PROJECT_ID}
+        projectId={projectId}
+        ethereumClient={ethereumClient}
+      />
     </>
   );
 }

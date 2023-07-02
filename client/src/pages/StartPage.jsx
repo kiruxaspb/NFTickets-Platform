@@ -21,9 +21,35 @@ function StartPage() {
             </h2>
             <div className="buttons">
               <Button path="/buy">Buy ticket</Button>
-              <Button path="/check" className="inverted">
-                Check QR
-              </Button>
+            </div>
+            <div className="rightPanel">
+              <h2>
+                Билеты действуют как эксклюзивный паспорт для фанатов, переосмысливая то, что значит
+                быть частью сообщества. Web3 позволяет эмитентам билетов предоставлять
+                привлекательные услуги и увеличивать доход от перепродажи , одновременно повышая
+                лояльность и удержание клиентов.
+              </h2>
+              <div className="buttons">
+                <Button path="/check" className="inverted">
+                  Check QR
+                </Button>
+              </div>
+            </div>
+
+            <h2>Как это работает?</h2>
+            <div className="linearTree">
+              <div className="line"></div>
+              <div className="info">
+                <ul>
+                  <li>1</li>
+                  <li>1</li>
+                  <li>1</li>
+                  <li>1</li>
+                  <li>1</li>
+                  <li>1</li>
+                  <li>1</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

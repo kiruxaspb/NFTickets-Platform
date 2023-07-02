@@ -12,7 +12,7 @@ button {
   font-weight: 400;
   color: white;
   border: none;
-  // border-radius: 30px;
+  border-radius: 10px;
   outline: none;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -24,7 +24,9 @@ button {
   &.inverted {
     background: transparent;
     border: 2px solid;
-    border-image: linear-gradient(to right, #fec303, #f70b91) 2;
+    // border-image: linear-gradient(to right, #fec303, #f70b91) 2;
+    border: 2px solid #f70b91;
+    border-radius: 10px;
   }
 }
 
@@ -33,14 +35,14 @@ a {
 }
 
 .wrapper {
-  background: url('../assets/images/bg1.jpg'), #170034;
+  background: url('../assets/images/bg.jpg'), #170034;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position-x: 500px;
+  // background-position-x: 500px;
   color: white;
   display: flex;
   justify-content: center;
-  overflow: hidden;
+  // height: 100vh;
 
   &.secondary {
     background: #170034;
@@ -48,47 +50,98 @@ a {
 
   .container {
     width: 80%;
-    height: 100vh;
     display: flex;
     margin-top: 30px;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
 
-    .list_block {
-      width: 100%;
-      height: 80px;
-      border-bottom: 1px solid #c6c6c6;
+    .marketplaceBlock {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
 
-      .left_panel {
-        p {
-          color: white;
-          font-family: 'Bruno Ace SC';
-          font-weight: 400;
-          font-size: 24px;
-          margin: 0;
-        }
-      }
-
-      .right_panel {
+      .list_block {
+        width: 300px;
+        height: 380px;
+        border: 2px solid #c6c6c6;
+        // box-shadow: inset 1px 1px 10px 1px #c6c6c6;
+        border-radius: 20px;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        justify-content: space-between;
         align-items: center;
-        p {
-          font-family: 'Bruno Ace SC';
-          font-weight: 400;
-          font-size: 16px;
-          color: #c6c6c6;
-          margin: 0 10px;
+        margin: 20px;
+        overflow: hidden;
+        // padding: 10px;
+
+        .imageBlock {
+          width: 100%;
+          height: 50%;
+          border: none;
+          border-radius: 20px;
+          overflow: hidden;
+
+          .overlay {
+            width: 100%;
+            height: 100%;
+            // background-color: rgba(0, 0, 0, 0.6);
+          }
+
+          img {
+            // width: 100%;
+            // height: 100%;
+            // background: rgba(0, 0, 0, 0.5);
+            // background-blend-mode: overlay;
+
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
         }
 
-        button {
-          width: 130px;
-          height: 43px;
-          padding: 0;
+        .infoBlock {
+          width: 90%;
+          // max-height: 50%;
+          display: flex;
+          flex-direction: column;
+          justify-content: end;
+          align-items: center;
+
+          .concertName {
+            text-align: center;
+            color: white;
+            font-family: 'Bruno Ace SC';
+            font-weight: 400;
+            font-size: 24px;
+            // margin-bottom: 10px;
+          }
+
+          .concertDate {
+            color: #c6c6c6;
+            font-size: 16px;
+          }
+
+          .priceBlock {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            p {
+              font-family: 'Bruno Ace SC';
+              font-weight: 400;
+              font-size: 16px;
+              color: #c6c6c6;
+              margin: 0 15px;
+            }
+
+            button {
+              width: 130px;
+              height: 43px;
+              padding: 0;
+            }
+          }
         }
       }
     }
@@ -118,6 +171,13 @@ a {
       }
     }
 
+    .rightPanel {
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      align-items: flex-end;
+    }
+
     .buttons {
       margin-left: -15px;
     }
@@ -138,6 +198,11 @@ a {
       font-size: 24px;
       color: #c6c6c6;
     }
+
+    .linearTree {
+      display: grid;
+      grid-template-columns: 1fr 4fr;
+    }
   }
 }
 
@@ -145,6 +210,29 @@ a {
   .wrapper {
     .container {
       background-position-x: 0px;
+
+      h1 {
+        margin-top: 70px;
+        margin-bottom: 0px;
+        font-size: 76px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      button {
+        width: 200px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .wrapper {
+    .container {
+      background-position-x: 0px;
+      width: 95%;
 
       h1 {
         margin-top: 70px;

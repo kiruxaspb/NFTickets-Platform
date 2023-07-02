@@ -1,18 +1,23 @@
 import React from 'react';
 import ClientContext from './ClientContext';
 
-function ListItem({ name, price }) {
+function ListItem({ name, price, image, date }) {
   return (
     <>
       <div className="list_block">
-        <div className="left_panel">
-          <p>{name}</p>
+        <div className="imageBlock">
+          {/* <div className="overlay"></div> */}
+          <img src={image} alt="" />
         </div>
-        <div className="right_panel">
-          <p>{price}</p>
-          <button className="inverted">
-            <ClientContext />
-          </button>
+        <div className="infoBlock">
+          <div className="concertName">{name}</div>
+          <div className="concertDate">{date}</div>
+          <div className="priceBlock">
+            <p>{price}</p>
+            <button className="inverted">
+              <ClientContext />
+            </button>
+          </div>
         </div>
       </div>
     </>
