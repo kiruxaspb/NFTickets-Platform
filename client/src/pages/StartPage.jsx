@@ -8,6 +8,9 @@ import fast from '../assets/icons/fast.svg';
 import key from '../assets/icons/key.svg';
 import yes from '../assets/icons/yes.svg';
 import warning from '../assets/icons/warning.svg';
+import wallet from '../assets/icons/wallet.svg';
+import nft from '../assets/icons/nft.svg';
+import star from '../assets/icons/star.svg';
 
 function StartPage() {
   const [highlightStyle, setHighlightStyle] = React.useState({
@@ -112,24 +115,23 @@ function StartPage() {
             <div className="horizontalLine"></div>
 
             <LineElement
-              icon={key}
-              header="Доступность"
+              icon={wallet}
+              header="Надёжность"
               color="purple"
               info="Зарегестрируйтесь, создав <span>свой профиль</span> с помощью кошелька"
               position="right"
             />
             <LineElement
-              icon={key}
-              header="Доступность"
+              icon={star}
+              header="Простота"
               color="red"
               info="
-              
               <ul><li>Создайте <span>новое событие</span></li><li>Добавьте описание</li><li>Загрузите билеты NFT для каждого
               уровня</li><li>Введите количество билетов и цену</li><li>Опубликуйте событие на платформе</li></ul>"
               position="right"
             />
             <LineElement
-              icon={key}
+              icon={nft}
               header="Доступность"
               color="yellow"
               info="<span>Билеты NFT</span> выставлены на продажу!"
