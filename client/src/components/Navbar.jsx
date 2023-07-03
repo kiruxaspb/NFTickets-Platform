@@ -6,6 +6,7 @@ import { sepolia } from 'wagmi/chains';
 import { Web3Button } from '@web3modal/react';
 import { useWeb3ModalTheme } from '@web3modal/react';
 import { Link } from 'react-router-dom';
+import Breadcrumbs from './Breadcrumbs';
 
 function Navbar() {
   const chains = [sepolia];
@@ -34,9 +35,12 @@ function Navbar() {
   return (
     <>
       <nav>
-        <Link to="/">
-          <div className="logo">NFTickets</div>
-        </Link>
+        <div className="breadcrumbs">
+          <Link to="/">
+            <div className="logo">NFTickets</div>
+          </Link>
+          <Breadcrumbs />
+        </div>
         <WagmiConfig config={wagmiConfig}>
           <Web3Button />
         </WagmiConfig>

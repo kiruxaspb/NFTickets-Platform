@@ -2,9 +2,44 @@ import React from 'react';
 
 import '../style/style.scss';
 
-import { Navbar, Button, Modal, Preloader } from '../components';
+import { Navbar, Button, Modal, Preloader, LineElement } from '../components';
+import shield from '../assets/icons/shield.svg';
+import fast from '../assets/icons/fast.svg';
+import key from '../assets/icons/key.svg';
+import yes from '../assets/icons/yes.svg';
+import warning from '../assets/icons/warning.svg';
 
 function StartPage() {
+  const [highlightStyle, setHighlightStyle] = React.useState({
+    left: 0,
+    top: 0,
+    display: 'none',
+  });
+
+  const handleMouseEnter = (e) => {
+    setHighlightStyle({
+      left: e.clientX,
+      top: e.clientY,
+      display: 'block',
+    });
+  };
+
+  const handleMouseMove = (e) => {
+    setHighlightStyle({
+      left: e.clientX,
+      top: e.clientY,
+      display: 'block',
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setHighlightStyle({
+      left: 0,
+      top: 0,
+      display: 'none',
+    });
+  };
+
   return (
     <>
       <div className="wrapper">
@@ -12,6 +47,14 @@ function StartPage() {
           <Navbar />
           <Preloader />
           <div className="main_content">
+            {/* <h1
+              className="text"
+              onMouseEnter={handleMouseEnter}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}>
+              NFTickets
+              <span className="highlight" style={highlightStyle}></span>
+            </h1> */}
             <h1>NFTickets</h1>
             <h2>
               Приобретайте билеты на мероприятия с помощью технологии NFT, которая гарантирует
@@ -30,27 +73,68 @@ function StartPage() {
                 лояльность и удержание клиентов.
               </h2>
               <div className="buttons">
-                <Button path="/check" className="inverted">
+                <Button path="/scan" className="inverted">
                   Check QR
                 </Button>
               </div>
             </div>
 
-            <h2>Как это работает?</h2>
-            <div className="linearTree">
-              <div className="line"></div>
-              <div className="info">
-                <ul>
-                  <li>1</li>
-                  <li>1</li>
-                  <li>1</li>
-                  <li>1</li>
-                  <li>1</li>
-                  <li>1</li>
-                  <li>1</li>
-                </ul>
-              </div>
-            </div>
+            <h2 className="howItWorks">Как это работает?</h2>
+
+            <h2 className="forWhat">Для пользователей</h2>
+
+            <LineElement
+              icon={warning}
+              header="Надёжность"
+              color="yellow"
+              info="Подключите Ваш <span>кошелёк</span>, создав свою учётную запись"
+            />
+            <LineElement
+              icon={yes}
+              header="Удобство"
+              color="orange"
+              info="Найдите <span>мероприятие</span> и ознакомьтесь с информацией"
+            />
+            <LineElement
+              icon={fast}
+              header="Скорость"
+              color="red"
+              info="Приобретите <span>NFT-билет</span> и смарт-контракт создаст для Вас билет"
+            />
+            <LineElement
+              icon={key}
+              header="Доступность"
+              color="purple"
+              info="<span>Билет у Вас!</span> Удачи на мероприятии!"
+            />
+
+            <h2 className="forWhat right">Для организаторов</h2>
+            <div className="horizontalLine"></div>
+
+            <LineElement
+              icon={key}
+              header="Доступность"
+              color="purple"
+              info="Зарегестрируйтесь, создав <span>свой профиль</span> с помощью кошелька"
+              position="right"
+            />
+            <LineElement
+              icon={key}
+              header="Доступность"
+              color="red"
+              info="
+              
+              <ul><li>Создайте <span>новое событие</span></li><li>Добавьте описание</li><li>Загрузите билеты NFT для каждого
+              уровня</li><li>Введите количество билетов и цену</li><li>Опубликуйте событие на платформе</li></ul>"
+              position="right"
+            />
+            <LineElement
+              icon={key}
+              header="Доступность"
+              color="yellow"
+              info="<span>Билеты NFT</span> выставлены на продажу!"
+              position="right"
+            />
           </div>
         </div>
       </div>

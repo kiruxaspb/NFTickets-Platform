@@ -5,3 +5,5 @@ export { default as ClientContext } from './ClientContext';
 export { default as Navbar } from './Navbar';
 export { default as Button } from './Button';
 export { default as Preloader } from './Preloader';
+export { default as Breadcrumbs } from './Breadcrumbs';
+export { default as LineElement } from './LineElement';
