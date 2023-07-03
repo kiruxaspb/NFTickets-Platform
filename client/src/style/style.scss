@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600;800&display=swap');
 
 button {
   margin: 15px;
@@ -12,7 +12,7 @@ button {
   font-weight: 400;
   color: white;
   border: none;
-  // border-radius: 30px;
+  border-radius: 10px;
   outline: none;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -24,7 +24,9 @@ button {
   &.inverted {
     background: transparent;
     border: 2px solid;
-    border-image: linear-gradient(to right, #fec303, #f70b91) 2;
+    // border-image: linear-gradient(to right, #fec303, #f70b91) 2;
+    border: 2px solid #f70b91;
+    border-radius: 10px;
   }
 }
 
@@ -33,14 +35,14 @@ a {
 }
 
 .wrapper {
-  background: url('../assets/images/bg1.jpg'), #170034;
+  background: url('../assets/images/bg.jpg'), #170034;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position-x: 500px;
+  // background-position-x: 500px;
   color: white;
   display: flex;
   justify-content: center;
-  overflow: hidden;
+  // height: 100vh;
 
   &.secondary {
     background: #170034;
@@ -48,47 +50,98 @@ a {
 
   .container {
     width: 80%;
-    height: 100vh;
     display: flex;
     margin-top: 30px;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
 
-    .list_block {
-      width: 100%;
-      height: 80px;
-      border-bottom: 1px solid #c6c6c6;
+    .marketplaceBlock {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
 
-      .left_panel {
-        p {
-          color: white;
-          font-family: 'Bruno Ace SC';
-          font-weight: 400;
-          font-size: 24px;
-          margin: 0;
-        }
-      }
-
-      .right_panel {
+      .list_block {
+        width: 300px;
+        height: 380px;
+        border: 2px solid #c6c6c6;
+        // box-shadow: inset 1px 1px 10px 1px #c6c6c6;
+        border-radius: 20px;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        justify-content: space-between;
         align-items: center;
-        p {
-          font-family: 'Bruno Ace SC';
-          font-weight: 400;
-          font-size: 16px;
-          color: #c6c6c6;
-          margin: 0 10px;
+        margin: 20px;
+        overflow: hidden;
+        // padding: 10px;
+
+        .imageBlock {
+          width: 100%;
+          height: 50%;
+          border: none;
+          border-radius: 20px;
+          overflow: hidden;
+
+          .overlay {
+            width: 100%;
+            height: 100%;
+            // background-color: rgba(0, 0, 0, 0.6);
+          }
+
+          img {
+            // width: 100%;
+            // height: 100%;
+            // background: rgba(0, 0, 0, 0.5);
+            // background-blend-mode: overlay;
+
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
         }
 
-        button {
-          width: 130px;
-          height: 43px;
-          padding: 0;
+        .infoBlock {
+          width: 90%;
+          // max-height: 50%;
+          display: flex;
+          flex-direction: column;
+          justify-content: end;
+          align-items: center;
+
+          .concertName {
+            text-align: center;
+            color: white;
+            font-family: 'Bruno Ace SC';
+            font-weight: 400;
+            font-size: 24px;
+            // margin-bottom: 10px;
+          }
+
+          .concertDate {
+            color: #c6c6c6;
+            font-size: 16px;
+          }
+
+          .priceBlock {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            p {
+              font-family: 'Bruno Ace SC';
+              font-weight: 400;
+              font-size: 16px;
+              color: #c6c6c6;
+              margin: 0 15px;
+            }
+
+            button {
+              width: 130px;
+              height: 43px;
+              padding: 0;
+            }
+          }
         }
       }
     }
@@ -107,20 +160,81 @@ a {
       justify-content: space-between;
       align-items: center;
 
-      .logo {
-        font-family: 'Bruno Ace SC';
-        font-weight: 400;
-        font-size: 36px;
-        line-height: 43px;
-        background: linear-gradient(90deg, #fec303 0%, #f70b91 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      .breadcrumbs {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .crumb {
+          text-decoration: none;
+          font-size: 24px;
+          margin-left: 15px;
+
+          a {
+            color: #c6c6c6;
+            font-family: 'Bruno Ace SC';
+
+            &::before {
+              content: '> ';
+            }
+          }
+        }
+
+        .logo {
+          font-family: 'Bruno Ace SC';
+          font-weight: 400;
+          font-size: 36px;
+          line-height: 43px;
+          background: linear-gradient(90deg, #fec303 0%, #f70b91 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      }
+    }
+
+    .rightPanel {
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      align-items: flex-end;
+      margin: 30px 0;
+
+      h2 {
+        text-align: right;
+      }
+
+      button {
+        margin-right: 0;
       }
     }
 
     .buttons {
       margin-left: -15px;
     }
+
+    // .text {
+    //   color: black;
+    //   font-size: 96px;
+    //   font-family: 'Bruno Ace SC';
+    //   // overflow: hidden;
+    //   background-color: red;
+    //   clip-path: stroke-box;
+
+    //   &:hover .highlight {
+    //     display: block;
+    //   }
+
+    //   .highlight {
+    //     position: fixed;
+    //     width: 10px;
+    //     height: 10px;
+    //     background: rgba(255, 255, 255, 0.5);
+    //     box-shadow: 0 0 50px 50px rgba(255, 255, 255, 0.5);
+    //     border-radius: 50%;
+    //     pointer-events: none;
+    //   }
+    // }
 
     h1 {
       font-size: 96px;
@@ -129,15 +243,260 @@ a {
       margin-top: 100px;
       line-height: 116px;
       letter-spacing: 2px;
+      z-index: 11;
     }
 
     h2 {
       width: 60%;
-      font-family: 'Bruno Ace SC', 'Montserrat';
+      // font-family: 'Montserrat', sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: left;
       font-weight: 400;
       font-size: 24px;
       color: #c6c6c6;
     }
+
+    .howItWorks {
+      margin-top: 100px;
+      width: 100%;
+      font-size: 60px;
+      font-weight: 800;
+      color: transparent;
+      text-transform: uppercase;
+      -webkit-text-stroke: 1px #f94167;
+      text-stroke: 1px #f94167;
+    }
+
+    .forWhat {
+      width: 100%;
+      text-align: left;
+      font-size: 48px;
+      font-weight: 600;
+      color: white;
+      // color: transparent;
+      text-transform: uppercase;
+      // -webkit-text-stroke: 1px #fec303;
+      // text-stroke: 1px #fec303;
+
+      &.right {
+        text-align: right;
+      }
+
+      // &::after {
+      //   content: '';
+      //   position: absolute;
+      //   top: 50%;
+      //   left: 50%;
+      //   transform: translate(-50%, -50%);
+      //   width: 80%;
+      //   box-shadow: 0 0 30px 20px rgba(255, 255, 255, 0.5);
+      //   border-radius: 50px;
+      //   z-index: 0;
+      // }
+    }
+
+    // .horizontalLine {
+    //   width: 80%;
+    //   background: linear-gradient(
+    //     to right,
+    //     #d2a8ff,
+    //     #a371f7 10%,
+    //     #196c2e 70%,
+    //     #2ea043 80%,
+    //     #56d364
+    //   );
+    //   height: 3px;
+    // }
+
+    .infoBlock {
+      font-family: 'Montserrat';
+
+      .icoName {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        justify-items: center;
+        align-items: center;
+        animation: viewImg 1s;
+
+        .light {
+          position: relative;
+          opacity: 0;
+
+          &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 30px 20px rgba(255, 255, 255, 0.5);
+            border-radius: 50px;
+            z-index: 0;
+          }
+
+          &.active {
+            opacity: 1;
+            animation: viewImg 0.7s;
+          }
+        }
+
+        img {
+          opacity: 0;
+
+          &.active {
+            opacity: 1;
+            animation: viewImg 1s;
+          }
+        }
+
+        h2 {
+          width: 100%;
+          text-align: left;
+          font-size: 36px;
+          color: transparent;
+          font-weight: 800;
+          margin: 15px 0;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          -webkit-text-stroke: 1px #fec303;
+          text-stroke: 1px #fec303;
+        }
+
+        &.right {
+          grid-template-columns: 4fr 1fr;
+
+          h2 {
+            text-align: right;
+          }
+        }
+      }
+
+      .linearTree {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        justify-items: center;
+        position: relative;
+        overflow: hidden;
+
+        .line {
+          opacity: 0;
+          width: 3px;
+          background: linear-gradient(#d2a8ff, #a371f7 10%, #196c2e 70%, #2ea043 80%, #56d364);
+          height: 350px;
+          overflow: hidden;
+          animation: animateBack 1s;
+
+          &.pink {
+            background: linear-gradient(#fff, #f70b91 20%, #f70b91 80%, white);
+          }
+
+          &.purple {
+            background: linear-gradient(white, #a371f7 20%, #a371f7 80%, white);
+          }
+
+          &.yellow {
+            background: linear-gradient(white, #fec303 20%, #fec303 80%, white);
+          }
+
+          &.orange {
+            background: linear-gradient(white, #fa7043 20%, #fa7043 80%, white);
+          }
+
+          &.red {
+            background: linear-gradient(white, #f94167 20%, #f94167 80%, white);
+          }
+
+          &.active {
+            opacity: 1;
+            animation: animate 1s;
+          }
+        }
+
+        .info {
+          width: 100%;
+          height: 100%;
+          display: inline-block;
+          font-size: 40px;
+          font-weight: 400;
+          line-height: 0.9;
+
+          span {
+            color: #fec303;
+            // color: transparent;
+            font-weight: 600;
+            // -webkit-text-stroke: 1px #fec303;
+            // text-stroke: 1px fec303;
+          }
+
+          ul {
+            text-decoration: none;
+            font-size: 32px;
+            list-style: none;
+            line-height: normal;
+
+            li {
+              margin-bottom: 5px;
+            }
+
+            // & li {
+            //   position: relative;
+
+            //   &::before {
+            //     content: '';
+            //     position: absolute;
+            //     top: 0;
+            //     right: -30px;
+            //     width: 10px;
+            //     height: 10px;
+            //     background-color: #fec303;
+            //     border-radius: 50%;
+            //   }
+            // }
+          }
+        }
+
+        &.right {
+          grid-template-columns: 4fr 1fr;
+
+          .info {
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes viewImg {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes animateBack {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(-500px);
+  }
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0;
+    transform: translateY(-500px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -149,10 +508,43 @@ a {
       h1 {
         margin-top: 70px;
         margin-bottom: 0px;
+        font-size: 80px;
+      }
+
+      h2 {
+        width: 100%;
+        font-size: 20px;
+      }
+
+      .rightPanel {
+        align-items: flex-start;
+
+        h2 {
+          text-align: left;
+        }
+      }
+
+      button {
+        width: 200px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .wrapper {
+    .container {
+      background-position-x: 0px;
+      width: 95%;
+
+      h1 {
+        margin-top: 70px;
+        margin-bottom: 0px;
         font-size: 76px;
       }
 
       h2 {
+        width: 100%;
         font-size: 20px;
       }
 

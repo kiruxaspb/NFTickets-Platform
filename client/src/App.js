@@ -9,7 +9,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<StartPage />} />
-          <Route path="/check" element={<CheckQRPage />} />
+          <Route path="/scan" element={<CheckQRPage />} />
           <Route path="/buy" element={<BuyTicketPage />} />
         </Routes>
       </BrowserRouter>

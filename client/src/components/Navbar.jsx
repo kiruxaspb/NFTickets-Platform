@@ -6,15 +6,16 @@ import { sepolia } from 'wagmi/chains';
 import { Web3Button } from '@web3modal/react';
 import { useWeb3ModalTheme } from '@web3modal/react';
 import { Link } from 'react-router-dom';
+import Breadcrumbs from './Breadcrumbs';
 
 function Navbar() {
   const chains = [sepolia];
-  const DEFAULT_PROJECT_ID = 'bbc8b07dd28b44958655fcdf376567b9';
+  const projectId = '8b5b43fbbd61a2852c226ff2eee68ab9';
 
-  const { publicClient } = configureChains(chains, [w3mProvider({ DEFAULT_PROJECT_ID })]);
+  const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);
   const wagmiConfig = createConfig({
     autoConnect: true,
-    connectors: w3mConnectors({ DEFAULT_PROJECT_ID, version: 1, chains }),
+    connectors: w3mConnectors({ projectId, chains }),
     publicClient,
   });
   const ethereumClient = new EthereumClient(wagmiConfig, chains);
@@ -34,14 +35,17 @@ function Navbar() {
   return (
     <>
       <nav>
-        <Link to="/">
-          <div className="logo">NFTickets</div>
-        </Link>
+        <div className="breadcrumbs">
+          <Link to="/">
+            <div className="logo">NFTickets</div>
+          </Link>
+          <Breadcrumbs />
+        </div>
         <WagmiConfig config={wagmiConfig}>
           <Web3Button />
         </WagmiConfig>
       </nav>
-      <Web3Modal DEFAULT_PROJECT_ID={DEFAULT_PROJECT_ID} ethereumClient={ethereumClient} />
+      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
     </>
   );
 }
