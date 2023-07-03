@@ -359,6 +359,14 @@ a {
           text-transform: uppercase;
           -webkit-text-stroke: 1px #fec303;
           text-stroke: 1px #fec303;
+          // animation: textRight 1s;
+          opacity: 0;
+          overflow: hidden;
+
+          &.active {
+            opacity: 1;
+            animation: textRight 0.7s;
+          }
         }
 
         &.right {
@@ -381,7 +389,7 @@ a {
           opacity: 0;
           width: 3px;
           background: linear-gradient(#d2a8ff, #a371f7 10%, #196c2e 70%, #2ea043 80%, #56d364);
-          height: 350px;
+          height: 400px;
           overflow: hidden;
           animation: animateBack 1s;
 
@@ -418,6 +426,12 @@ a {
           font-size: 40px;
           font-weight: 400;
           line-height: 0.9;
+          opacity: 0;
+
+          &.active {
+            opacity: 1;
+            animation: textRight 1s;
+          }
 
           span {
             color: #fec303;
@@ -432,6 +446,7 @@ a {
             font-size: 32px;
             list-style: none;
             line-height: normal;
+            margin: 0;
 
             li {
               margin-bottom: 5px;
@@ -500,6 +515,18 @@ a {
   }
 }
 
+@keyframes textRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-300px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @media screen and (max-width: 1400px) {
   .wrapper {
     .container {
@@ -525,7 +552,7 @@ a {
       }
 
       button {
-        width: 200px;
+        width: 250px;
       }
     }
   }
@@ -549,7 +576,7 @@ a {
       }
 
       button {
-        width: 200px;
+        width: 250px;
       }
     }
   }

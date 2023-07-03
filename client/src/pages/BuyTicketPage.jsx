@@ -59,6 +59,7 @@ function BuyTicketPage() {
           <div className="marketplaceBlock">
             {concerts.map((concert, index) => (
               <ListItem
+                key={`${concert}_${index}`}
                 name={concert.name}
                 price={concert.price}
                 image={concert.image}
