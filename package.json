@@ -1,15 +1,22 @@
 {
   "name": "nftickets-platform-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Renewal NFT tickets service",
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
     "client": "npm run start --prefix ./client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "mirokiro5",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0xWebThree/NFTickets-Platform.git"
+  },
+  "author": "kiruxaspb",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/0xWebThree/NFTickets-Platform/issues"
+  },
   "dependencies": {
     "@pinata/sdk": "^2.1.0",
     "concurrently": "^8.0.1",
