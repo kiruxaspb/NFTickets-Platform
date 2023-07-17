@@ -16,20 +16,21 @@ module.exports.uploadFile = async function (fileName, filePath, UseUrl = false) 
       },
     },
   );
+
   console.log(`'${fileName}' upload complete; CID: ${IpfsHash}`);
+
   let body;
   if (UseUrl) {
     body =
     {
-      "description": "Description of your NFT",
+      "description": "NFTickets Proto",
       "image": `https://gateway.pinata.cloud/ipfs/${IpfsHash}`,
       "name": fileName
     }
-  }
-  else {
+  } else {
     body =
     {
-      "description": "Description of your NFT",
+      "description": "NFTickets Proto",
       "image": `ipfs://${IpfsHash}`,
       "name": fileName
     };
@@ -41,14 +42,14 @@ module.exports.uploadFile = async function (fileName, filePath, UseUrl = false) 
     pinataOptions: {
       cidVersion: 0,
     },
-  },
+  }
   );
   console.log(`'${fileName} json Metadata' upload complete; CID: ${Metadata.IpfsHash}`);
+
   let metadata;
   if (UseUrl) {
     metadata = `https://gateway.pinata.cloud/ipfs/${Metadata.IpfsHash}`;
-  }
-  else {
+  } else {
     metadata = `ipfs://${Metadata.IpfsHash}`;
   }
   return metadata;
