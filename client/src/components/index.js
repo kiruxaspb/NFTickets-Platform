@@ -7,3 +7,4 @@ export { default as Button } from './Button';
 export { default as Preloader } from './Preloader';
 export { default as Breadcrumbs } from './Breadcrumbs';
 export { default as LineElement } from './LineElement';
+export { default as Input } from './Input&Label';
