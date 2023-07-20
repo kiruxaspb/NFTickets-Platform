@@ -1,18 +1,17 @@
 import React from 'react';
 import ClientContext from './ClientContext';
 
-function ListItem({ name, price, image, date }) {
+function randomColor() {}
+
+function ListItem({ name, price, date }) {
   return (
     <>
       <div className="list_block">
-        <div className="imageBlock">
-          <img src={image} alt="" />
-        </div>
         <div className="infoBlock">
           <div className="concertName">{name}</div>
           <div className="concertDate">{date}</div>
           <div className="priceBlock">
-            <p>{price}</p>
+            <p>{price} ETH</p>
             <button className="inverted">
               <ClientContext />
             </button>
