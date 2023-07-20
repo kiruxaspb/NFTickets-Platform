@@ -6,7 +6,6 @@ function ListItem({ name, price, image, date }) {
     <>
       <div className="list_block">
         <div className="imageBlock">
-          {/* <div className="overlay"></div> */}
           <img src={image} alt="" />
         </div>
         <div className="infoBlock">
