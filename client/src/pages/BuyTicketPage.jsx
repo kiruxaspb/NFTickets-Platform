@@ -2,6 +2,7 @@ import React from 'react';
 import Web3 from 'web3';
 import { ListItem, Navbar, Modal, Preloader } from '../components';
 import { ethers, providers } from 'ethers';
+import { useSelector } from 'react-redux';
 
 const DEFAULT_ADRESS = '0x01d384f76A26f4c1a85FB8588E44BC8776135d51';
 const DEFAULT_ABI = JSON.parse(
@@ -20,6 +21,8 @@ function BuyTicketPage() {
   const nftTicketContract = new web3.eth.Contract(DEFAULT_ABI, DEFAULT_ADRESS);
   const [allEvents, setAllEvents] = React.useState([]);
   const [eventInfo, setEventInfo] = React.useState([]);
+
+  const isLogin = useSelector((state) => state.IsLoginSlice.isLogin);
 
   React.useEffect(() => {
     const getEvents = async () => {
@@ -53,19 +56,24 @@ function BuyTicketPage() {
         <div className="container">
           <Navbar />
           <Preloader />
-          <div className="marketplaceBlock">
-            {eventInfo.map((event, index) => (
-              <ListItem
-                key={event.address}
-                name={event.name}
-                symbol={event.symbol}
-                quantity={event.maxTicketSupply}
-                date={event.eventStart}
-                price={event.ticketPrice}
-                ticketSupply={event.ticketSupply}
-              />
-            ))}
-          </div>
+
+          {isLogin ? (
+            <div className="marketplaceBlock">
+              {eventInfo.map((event, index) => (
+                <ListItem
+                  key={event.address}
+                  name={event.name}
+                  symbol={event.symbol}
+                  quantity={event.maxTicketSupply}
+                  date={event.eventStart}
+                  price={event.ticketPrice}
+                  ticketSupply={event.ticketSupply}
+                />
+              ))}
+            </div>
+          ) : (
+            <h2 className="howItWorks center">Нужно авторизоваться :(</h2>
+          )}
           <Modal />
         </div>
       </div>
