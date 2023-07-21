@@ -56,7 +56,7 @@ function ClientContext({ address, ticketPrice }) {
       // const contract = new web3.eth.Contract(MERO_ABI, address);
       const uniqueId = Date.now();
       const ticket = await contract.buyTicket(uniqueId, DEFAULT_LINK, overrides);
-      console.log(ticket);
+      console.log(ticket, uniqueId);
       // const tx = await contract.safeMint(provider.getSigner().getAddress(), receivedData.data);
 
       // await tx.wait();

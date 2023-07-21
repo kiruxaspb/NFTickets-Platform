@@ -1,8 +1,16 @@
 import React from 'react';
+import { ethers, providers } from 'ethers';
 import { Input, Navbar, Preloader } from '../components';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsLoading } from '../redux/slices/SpinStatusSlice';
+
+const DEFAULT_ABI = JSON.parse(
+  '[{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"organization","type":"address"},{"indexed":false,"internalType":"address","name":"_event","type":"address"}],"name":"EventCreated","type":"event"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"allEvents","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"name","type":"string"},{"internalType":"string","name":"symbol","type":"string"},{"internalType":"uint256","name":"maxTicketSupply","type":"uint256"},{"internalType":"uint256","name":"eventStart","type":"uint256"},{"internalType":"uint256","name":"ticketPrice","type":"uint256"},{"internalType":"bool","name":"transferable","type":"bool"}],"name":"createEvent","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"getAllEvents","outputs":[{"internalType":"address[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"eventId","type":"uint256"}],"name":"getEventAddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"}]',
+);
+const DEFAULT_ADRESS = '0x64110149765CF53Ee09678Fb81987588f6381324';
 
 function AddEventPage() {
+  const dispatch = useDispatch();
   const [eventInfo, setEventInfo] = React.useState({
     name: '',
     symbol: '',
@@ -13,10 +21,35 @@ function AddEventPage() {
   });
 
   const eventInfoHandler = (e) => {
-    setEventInfo({ ...eventInfo, [e.target.name]: e.target.value });
+    if (e.target.name === 'date') {
+      const value = Math.floor(new Date(e.target.value).getTime() / 1000);
+      setEventInfo({ ...eventInfo, [e.target.name]: value });
+    } else if (e.target.name === 'price') {
+      const price = e.target.value * 10 ** 18;
+      setEventInfo({ ...eventInfo, [e.target.name]: price });
+    } else {
+      setEventInfo({ ...eventInfo, [e.target.name]: e.target.value });
+    }
   };
 
   const isLogin = useSelector((state) => state.IsLoginSlice.isLogin);
+
+  const addEvent = async (e) => {
+    e.preventDefault();
+    dispatch(setIsLoading(true));
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = await provider.getSigner().getAddress();
+    const contract = new ethers.Contract(DEFAULT_ADRESS, DEFAULT_ABI, provider.getSigner());
+    const mero = await contract.createEvent(
+      eventInfo.name,
+      eventInfo.symbol,
+      eventInfo.quantity,
+      eventInfo.date,
+      eventInfo.price,
+      eventInfo.transferable,
+    );
+    dispatch(setIsLoading(false));
+  };
 
   return (
     <>
@@ -90,7 +123,7 @@ function AddEventPage() {
               </div>
 
               <Input name="reset" type="reset" value="Очистить" />
-              <Input name="submit" type="submit" value="Создать" />
+              <Input name="submit" type="submit" value="Создать" onClick={addEvent} />
             </form>
           ) : (
             <h2 className="howItWorks center">Нужно авторизоваться :(</h2>
