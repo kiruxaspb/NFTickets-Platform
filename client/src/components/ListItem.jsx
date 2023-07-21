@@ -27,7 +27,7 @@ const randomInt = () => {
   return Math.floor(Math.random() * 500);
 };
 
-function ListItem({ name, price, date }) {
+function ListItem({ name, price, date, address }) {
   return (
     <>
       <div
@@ -45,9 +45,9 @@ function ListItem({ name, price, date }) {
           <div className="concertName">{name}</div>
           <div className="concertDate">{date}</div>
           <div className="priceBlock">
-            <p>{price} ETH</p>
+            <p>{price} STC</p>
             <button className="inverted">
-              <ClientContext />
+              <ClientContext address={address} ticketPrice={price} />
             </button>
           </div>
         </div>

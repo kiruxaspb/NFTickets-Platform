@@ -5,6 +5,8 @@ import { ethers, providers } from 'ethers';
 import { useSelector } from 'react-redux';
 
 const DEFAULT_ADRESS = '0x01d384f76A26f4c1a85FB8588E44BC8776135d51';
+const MARKETPACE_ADDRESS = '0x26041c7cDEEb4FD1B4c3653bD6cD3e2D1Fda44fF';
+const RPC_LINK = 'https://rpc.test.siberium.net';
 const DEFAULT_ABI = JSON.parse(
   '[{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"organization","type":"address"},{"indexed":false,"internalType":"address","name":"_event","type":"address"}],"name":"EventCreated","type":"event"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"allEvents","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"name","type":"string"},{"internalType":"string","name":"symbol","type":"string"},{"internalType":"uint256","name":"maxTicketSupply","type":"uint256"},{"internalType":"uint256","name":"eventStart","type":"uint256"},{"internalType":"uint256","name":"ticketPrice","type":"uint256"},{"internalType":"bool","name":"transferable","type":"bool"}],"name":"createEvent","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"getAllEvents","outputs":[{"internalType":"address[]","name":"","type":"address[]"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"eventId","type":"uint256"}],"name":"getEventAddress","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"}]',
 );
@@ -14,8 +16,8 @@ const MERO_ABI = JSON.parse(
 );
 
 function BuyTicketPage() {
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const contract = new ethers.Contract(DEFAULT_ADRESS, DEFAULT_ABI, provider.getSigner());
+  // const provider = new ethers.providers.Web3Provider(window.ethereum);
+  // const contract = new ethers.Contract(DEFAULT_ADRESS, DEFAULT_ABI, provider.getSigner());
 
   const web3 = new Web3('https://sepolia.infura.io/v3/35d198d8ecdf422f8ccbef64253e3dae');
   const nftTicketContract = new web3.eth.Contract(DEFAULT_ABI, DEFAULT_ADRESS);
@@ -33,21 +35,28 @@ function BuyTicketPage() {
   }, []);
 
   React.useEffect(() => {
-    allEvents.map(async (address, index) => {
+    console.log(allEvents);
+    const data = allEvents.map(async (address, index) => {
       const newcontract = new web3.eth.Contract(MERO_ABI, address);
 
       const name = await newcontract.methods.name().call();
       const symbol = await newcontract.methods.symbol().call();
       const maxTicketSupply = await newcontract.methods.maxTicketSupply().call();
-      const eventStart = await newcontract.methods.eventStart().call();
-      const ticketPrice = await newcontract.methods.ticketPrice().call();
+      const eventDate = await newcontract.methods.eventStart().call();
+      const eventStart = new Date(eventDate * 1000).toLocaleString();
+      const price = await newcontract.methods.ticketPrice().call();
+      const ticketPrice = (price * 10 ** -18).toFixed(18).toString();
       const ticketSupply = await newcontract.methods.ticketSupply().call();
-
-      setEventInfo((prevInfo) => [
-        ...prevInfo,
-        { address, name, symbol, maxTicketSupply, eventStart, ticketPrice, ticketSupply },
-      ]);
+      return { address, name, symbol, maxTicketSupply, eventStart, ticketPrice, ticketSupply };
     });
+
+    Promise.all(data)
+      .then((results) => {
+        setEventInfo(results);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, [allEvents]);
 
   return (
@@ -62,6 +71,7 @@ function BuyTicketPage() {
               {eventInfo.map((event, index) => (
                 <ListItem
                   key={event.address}
+                  address={event.address}
                   name={event.name}
                   symbol={event.symbol}
                   quantity={event.maxTicketSupply}
