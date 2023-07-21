@@ -11,6 +11,8 @@ import detectEthereumProvider from '@metamask/detect-provider';
 import Breadcrumbs from './Breadcrumbs';
 import Button from './Button';
 import { ethers } from 'ethers';
+import { useDispatch } from 'react-redux';
+import { setIsLogin } from '../redux/slices/IsLoginSlice';
 
 function Navbar() {
   // const chains = [sepolia];
@@ -49,6 +51,14 @@ function Navbar() {
   const [hasProvider, setHasProvider] = React.useState(null);
   const initialState = { accounts: [] };
   const [wallet, setWallet] = React.useState(initialState);
+
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    if (wallet.accounts.length > 0) {
+      dispatch(setIsLogin(true));
+    }
+  }, [wallet]);
 
   React.useEffect(() => {
     const refreshAccounts = (accounts: any) => {
