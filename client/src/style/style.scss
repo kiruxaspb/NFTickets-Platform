@@ -38,11 +38,9 @@ a {
   background: url('../assets/images/bg.jpg'), #170034;
   background-repeat: no-repeat;
   background-size: cover;
-  // background-position-x: 500px;
   color: white;
   display: flex;
   justify-content: center;
-  // height: 100vh;
 
   &.secondary {
     background: #170034;
@@ -66,15 +64,67 @@ a {
         width: 300px;
         height: 380px;
         border: 2px solid #c6c6c6;
-        // box-shadow: inset 1px 1px 10px 1px #c6c6c6;
         border-radius: 20px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: end;
         align-items: center;
         margin: 20px;
         overflow: hidden;
-        // padding: 10px;
+        background: linear-gradient(to top, var(--color), var(--color2));
+
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: -50px;
+          left: -100px;
+          width: calc(100% + var(--width));
+          height: calc(100% + var(--width));
+          border-radius: 500px;
+          border: 2px solid var(--color);
+          transform: translate(var(--width)) rotate(var(--deg));
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: var(--height);
+          left: var(--width);
+          width: calc(100% + var(--width));
+          height: calc(80% + var(--height));
+          border-radius: 50%;
+          background: linear-gradient(to bottom, var(--color), var(--color2));
+          transform: translate(var(--width)) rotate(var(--deg));
+        }
+
+        .circle {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          border-radius: 500px;
+          border: 2px dashed rgba(255, 255, 255, 0.3);
+          z-index: 100;
+          min-width: 100px;
+          min-height: 100px;
+        }
+
+        .circle:nth-child(1) {
+          width: var(--height);
+          height: var(--height);
+          left: var(--width);
+          top: var(--height);
+          transform: translate(var(--width)) scale(0.8);
+        }
+
+        .circle:nth-child(2) {
+          width: var(--height);
+          height: var(--height);
+          top: calc(10% - var(--height));
+          left: calc(10% + var(--height));
+          transform: translate(var(--height)) scale(1.2);
+        }
 
         .imageBlock {
           width: 100%;
@@ -86,15 +136,9 @@ a {
           .overlay {
             width: 100%;
             height: 100%;
-            // background-color: rgba(0, 0, 0, 0.6);
           }
 
           img {
-            // width: 100%;
-            // height: 100%;
-            // background: rgba(0, 0, 0, 0.5);
-            // background-blend-mode: overlay;
-
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -103,11 +147,11 @@ a {
 
         .infoBlock {
           width: 90%;
-          // max-height: 50%;
           display: flex;
           flex-direction: column;
-          justify-content: end;
+          justify-content: flex-end;
           align-items: center;
+          z-index: 1000;
 
           .concertName {
             text-align: center;
@@ -115,7 +159,6 @@ a {
             font-family: 'Bruno Ace SC';
             font-weight: 400;
             font-size: 24px;
-            // margin-bottom: 10px;
           }
 
           .concertDate {
@@ -129,17 +172,20 @@ a {
             align-items: center;
 
             p {
-              font-family: 'Bruno Ace SC';
+              font-family: 'Montserrat';
               font-weight: 400;
-              font-size: 16px;
-              color: #c6c6c6;
-              margin: 0 15px;
+              font-size: 18px;
+              color: #fff;
+              margin: 0 10px;
             }
 
             button {
               width: 130px;
               height: 43px;
               padding: 0;
+              border: 2px solid #fff;
+              font-family: 'Montserrat';
+              letter-spacing: 1px;
             }
           }
         }
@@ -148,9 +194,6 @@ a {
 
     .camera {
       width: 600px;
-      // height: 400px;
-      // background: #4a4a4a;
-      // border-radius: 40px;
     }
 
     nav {
@@ -213,29 +256,6 @@ a {
       margin-left: -15px;
     }
 
-    // .text {
-    //   color: black;
-    //   font-size: 96px;
-    //   font-family: 'Bruno Ace SC';
-    //   // overflow: hidden;
-    //   background-color: red;
-    //   clip-path: stroke-box;
-
-    //   &:hover .highlight {
-    //     display: block;
-    //   }
-
-    //   .highlight {
-    //     position: fixed;
-    //     width: 10px;
-    //     height: 10px;
-    //     background: rgba(255, 255, 255, 0.5);
-    //     box-shadow: 0 0 50px 50px rgba(255, 255, 255, 0.5);
-    //     border-radius: 50%;
-    //     pointer-events: none;
-    //   }
-    // }
-
     h1 {
       font-size: 96px;
       font-family: 'Bruno Ace SC';
@@ -287,32 +307,7 @@ a {
       &.right {
         text-align: right;
       }
-
-      // &::after {
-      //   content: '';
-      //   position: absolute;
-      //   top: 50%;
-      //   left: 50%;
-      //   transform: translate(-50%, -50%);
-      //   width: 80%;
-      //   box-shadow: 0 0 30px 20px rgba(255, 255, 255, 0.5);
-      //   border-radius: 50px;
-      //   z-index: 0;
-      // }
     }
-
-    // .horizontalLine {
-    //   width: 80%;
-    //   background: linear-gradient(
-    //     to right,
-    //     #d2a8ff,
-    //     #a371f7 10%,
-    //     #196c2e 70%,
-    //     #2ea043 80%,
-    //     #56d364
-    //   );
-    //   height: 3px;
-    // }
 
     .eventForm {
       width: 100%;
@@ -449,10 +444,7 @@ a {
 
           span {
             color: #fec303;
-            // color: transparent;
             font-weight: 600;
-            // -webkit-text-stroke: 1px #fec303;
-            // text-stroke: 1px fec303;
           }
 
           ul {
@@ -465,21 +457,6 @@ a {
             li {
               margin-bottom: 5px;
             }
-
-            // & li {
-            //   position: relative;
-
-            //   &::before {
-            //     content: '';
-            //     position: absolute;
-            //     top: 0;
-            //     right: -30px;
-            //     width: 10px;
-            //     height: 10px;
-            //     background-color: #fec303;
-            //     border-radius: 50%;
-            //   }
-            // }
           }
         }
 

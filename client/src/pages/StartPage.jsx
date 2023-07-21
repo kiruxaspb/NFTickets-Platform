@@ -13,36 +13,6 @@ import nft from '../assets/icons/nft.svg';
 import star from '../assets/icons/star.svg';
 
 function StartPage() {
-  const [highlightStyle, setHighlightStyle] = React.useState({
-    left: 0,
-    top: 0,
-    display: 'none',
-  });
-
-  const handleMouseEnter = (e) => {
-    setHighlightStyle({
-      left: e.clientX,
-      top: e.clientY,
-      display: 'block',
-    });
-  };
-
-  const handleMouseMove = (e) => {
-    setHighlightStyle({
-      left: e.clientX,
-      top: e.clientY,
-      display: 'block',
-    });
-  };
-
-  const handleMouseLeave = () => {
-    setHighlightStyle({
-      left: 0,
-      top: 0,
-      display: 'none',
-    });
-  };
-
   return (
     <>
       <div className="wrapper">
@@ -50,14 +20,6 @@ function StartPage() {
           <Navbar />
           <Preloader />
           <div className="main_content">
-            {/* <h1
-              className="text"
-              onMouseEnter={handleMouseEnter}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}>
-              NFTickets
-              <span className="highlight" style={highlightStyle}></span>
-            </h1> */}
             <h1>NFTickets</h1>
             <h2>
               Приобретайте билеты на мероприятия с помощью технологии NFT, которая гарантирует

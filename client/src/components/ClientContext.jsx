@@ -63,7 +63,7 @@ function ClientContext() {
   return (
     <>
       <div id="control">
-        <div onClick={sendTransaction}>Buy</div>
+        <div onClick={sendTransaction}>Купить</div>
       </div>
     </>
   );
