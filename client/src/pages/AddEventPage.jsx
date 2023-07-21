@@ -66,8 +66,8 @@ function AddEventPage() {
               </div>
             </div>
 
-            <Input name="reset" type="reset" />
-            <Input name="submit" type="submit" />
+            <Input name="reset" type="reset" value="Очистить" />
+            <Input name="submit" type="submit" value="Создать" />
           </form>
         </div>
       </div>
