@@ -31,22 +31,22 @@ function ClientContext({ address, ticketPrice }) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = await provider.getSigner().getAddress();
 
-      // const receivedData = await axios.get('/api', {
-      //   params: { address },
-      // });
-      // console.log('received', receivedData.data);
+      const receivedData = await axios.get('/api', {
+        params: { address: signer },
+      });
+      console.log('received', receivedData.data);
 
       const contract = new ethers.Contract(address, MERO_ABI, provider.getSigner());
       console.log(ticketPrice);
       const overrides = { value: ethers.utils.parseEther(ticketPrice) };
       const uniqueId = Date.now();
-      const ticket = await contract.buyTicket(uniqueId, DEFAULT_LINK, overrides);
+      const ticket = await contract.buyTicket(uniqueId, receivedData.data, overrides);
       console.log(ticket, uniqueId);
 
       dispatch(setIsTrueQR(true));
       dispatch(setShowModal(true));
       dispatch(setIsLoading(false));
-      dispatch(setTicketData({ hash: ticket.hash, id: uniqueId }));
+      dispatch(setTicketData({ hash: address, id: uniqueId }));
     } catch (error) {
       dispatch(setIsLoading(false));
       console.log(error);
