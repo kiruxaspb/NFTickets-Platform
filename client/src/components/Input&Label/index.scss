@@ -38,10 +38,14 @@ $gray: #9b9b9b;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
+    margin: 10px;
 
     input {
-      width: 200px;
+      width: 267px;
+      height: 60px;
+      padding: 15px;
+      font-family: 'Montserrat';
+      font-size: 20px;
       border: 1px solid $secondary;
       border-radius: 10px;
       cursor: pointer;
@@ -49,6 +53,12 @@ $gray: #9b9b9b;
       transition: all 0.3s;
 
       &:hover {
+        background: #f70b91;
+      }
+    }
+
+    &.submit {
+      input {
         background: #f70b91;
       }
     }

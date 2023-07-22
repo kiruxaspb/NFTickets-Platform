@@ -109,11 +109,14 @@ function Navbar() {
         {/* <WagmiConfig config={wagmiConfig}>
           <Web3Button />
         </WagmiConfig> */}
-        <Button className="inverted" onClick={handleConnect}>
-          {`${
-            wallet.accounts.length > 0 ? wallet.accounts[0].slice(0, 9) + '...' : 'Wallet connect'
-          }`}
-        </Button>
+        <div>
+          <Button path="/addevent">Add event</Button>
+          <Button className="inverted" onClick={handleConnect}>
+            {`${
+              wallet.accounts.length > 0 ? wallet.accounts[0].slice(0, 9) + '...' : 'Wallet connect'
+            }`}
+          </Button>
+        </div>
       </nav>
       {/* <Web3Modal projectId={projectId} ethereumClient={ethereumClient} /> */}
     </>

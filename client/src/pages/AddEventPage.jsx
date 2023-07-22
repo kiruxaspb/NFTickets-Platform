@@ -121,9 +121,10 @@ function AddEventPage() {
                   </div>
                 </div>
               </div>
-
-              <Input name="reset" type="reset" value="Очистить" />
-              <Input name="submit" type="submit" value="Создать" onClick={addEvent} />
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Input name="reset" type="reset" value="Очистить" />
+                <Input name="submit" type="submit" value="Создать" onClick={addEvent} />
+              </div>
             </form>
           ) : (
             <h2 className="howItWorks center">Нужно авторизоваться :(</h2>
