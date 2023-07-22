@@ -2,7 +2,8 @@ import React from 'react';
 import Web3 from 'web3';
 import { ListItem, Navbar, Modal, Preloader } from '../components';
 import { ethers, providers } from 'ethers';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAllEvents } from '../redux/slices/AllEventsSlice';
 
 const DEFAULT_ADRESS = '0x01d384f76A26f4c1a85FB8588E44BC8776135d51';
 const MARKETPACE_ADDRESS = '0x64110149765CF53Ee09678Fb81987588f6381324';
@@ -23,17 +24,22 @@ function BuyTicketPage() {
   // const provider = new ethers.providers.Web3Provider(window.ethereum);
   // const contract = new ethers.Contract(DEFAULT_ADRESS, DEFAULT_ABI, provider.getSigner());
 
+  const dispatch = useDispatch();
+  const allEvents = useSelector((state) => state.AllEventsSlice.allEvents);
+
   const web3 = new Web3(RPC_LINK);
   const nftTicketContract = new web3.eth.Contract(DEFAULT_ABI, MARKETPACE_ADDRESS);
-  const [allEvents, setAllEvents] = React.useState([]);
+  // const [allEvents, setAllEvents] = React.useState([]);
   const [eventInfo, setEventInfo] = React.useState([]);
 
   const isLogin = useSelector((state) => state.IsLoginSlice.isLogin);
+  const ticketHash = useSelector((state) => state.TicketDataSlice.hash);
+  const ticketId = useSelector((state) => state.TicketDataSlice.id);
 
   React.useEffect(() => {
     const getEvents = async () => {
       const allevents = await nftTicketContract.methods.getAllEvents().call();
-      setAllEvents(allevents);
+      dispatch(setAllEvents(allevents));
     };
     getEvents();
   }, []);
@@ -88,7 +94,7 @@ function BuyTicketPage() {
           ) : (
             <h2 className="howItWorks center">Нужно авторизоваться :(</h2>
           )}
-          <Modal />
+          <Modal hash={ticketHash} id={ticketId} />
         </div>
       </div>
     </>

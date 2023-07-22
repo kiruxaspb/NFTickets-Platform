@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { setIsTrueQR } from '../redux/slices/QRStateSlice';
 import { setShowModal } from '../redux/slices/ShowModalSlice';
 import { setIsLoading } from '../redux/slices/SpinStatusSlice';
+import { setTicketData } from '../redux/slices/TicketDataSlice';
 
 function ClientContext({ address, ticketPrice }) {
   const dispatch = useDispatch();
@@ -24,20 +25,6 @@ function ClientContext({ address, ticketPrice }) {
   const [connected, setConnected] = React.useState(false);
   const [account, setAccount] = React.useState(null);
 
-  // const connect = async () => {
-  //   try {
-  //     const provider = new ethers.providers.Web3Provider(window.ethereum);
-  //     await provider.send('eth_requestAccounts', []);
-  //     const signer = await provider.getSigner().getAddress();
-
-  //     console.log(signer);
-  //     setAccount(signer);
-  //     setConnected(true);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   async function sendTransaction() {
     try {
       dispatch(setIsLoading(true));
@@ -50,22 +37,18 @@ function ClientContext({ address, ticketPrice }) {
       // console.log('received', receivedData.data);
 
       const contract = new ethers.Contract(address, MERO_ABI, provider.getSigner());
-      // const web3 = new Web3('https://sepolia.infura.io/v3/35d198d8ecdf422f8ccbef64253e3dae');
+
       console.log(ticketPrice);
       const overrides = { value: ethers.utils.parseEther(ticketPrice) };
-      // const contract = new web3.eth.Contract(MERO_ABI, address);
       const uniqueId = Date.now();
-      const ticket = await contract.buyTicket(uniqueId, DEFAULT_LINK, overrides);
+      const ticket = await contract.buyTicket(uniqueId, receivedData.data, overrides);
       console.log(ticket, uniqueId);
-      // const tx = await contract.safeMint(provider.getSigner().getAddress(), receivedData.data);
-
-      // await tx.wait();
 
       dispatch(setIsTrueQR(true));
       dispatch(setShowModal(true));
       dispatch(setIsLoading(false));
+      dispatch(setTicketData({ hash: address, id: uniqueId }));
 
-      // console.log(tx);
     } catch (error) {
       dispatch(setIsLoading(false));
       console.log(error);
