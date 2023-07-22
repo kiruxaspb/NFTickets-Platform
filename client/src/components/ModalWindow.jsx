@@ -6,7 +6,7 @@ import { setShowModal } from '../redux/slices/ShowModalSlice';
 import success from '../assets/images/success.svg';
 import error from '../assets/images/error.svg';
 
-function Modal() {
+function Modal({ hash, id }) {
   const dispatch = useDispatch();
 
   const showModal = useSelector((state) => state.ShowModalSlice.showModal);
@@ -31,13 +31,18 @@ function Modal() {
         <div className="modal">
           <div className="modal-content">
             <div className="modal-header">
-              <h2>Статус</h2>
+              <h2>Сохраните даные ниже</h2>
               <span className="modal-close" onClick={handleCloseModal}>
                 &times;
               </span>
             </div>
             <div className="modal-status">
-              <p>{`${isTrueQR}`}</p>
+              <p className="ticketInfo">
+                <b>address:</b> {hash}
+              </p>
+              <p className="ticketInfo">
+                <b>id:</b> {id}
+              </p>
               <img src={currentImg}></img>
             </div>
           </div>

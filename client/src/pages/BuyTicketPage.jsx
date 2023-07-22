@@ -29,6 +29,8 @@ function BuyTicketPage() {
   const [eventInfo, setEventInfo] = React.useState([]);
 
   const isLogin = useSelector((state) => state.IsLoginSlice.isLogin);
+  const ticketHash = useSelector((state) => state.TicketDataSlice.hash);
+  const ticketId = useSelector((state) => state.TicketDataSlice.id);
 
   React.useEffect(() => {
     const getEvents = async () => {
@@ -88,7 +90,7 @@ function BuyTicketPage() {
           ) : (
             <h2 className="howItWorks center">Нужно авторизоваться :(</h2>
           )}
-          <Modal />
+          <Modal hash={ticketHash} id={ticketId} />
         </div>
       </div>
     </>
