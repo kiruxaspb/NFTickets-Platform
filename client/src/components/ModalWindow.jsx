@@ -31,18 +31,22 @@ function Modal({ hash, id }) {
         <div className="modal">
           <div className="modal-content">
             <div className="modal-header">
-              <h2>Сохраните даные ниже</h2>
+              <h2>Сохраните и внесите данные ниже</h2>
               <span className="modal-close" onClick={handleCloseModal}>
                 &times;
               </span>
             </div>
             <div className="modal-status">
-              <p className="ticketInfo">
-                <b>address:</b> {hash}
-              </p>
-              <p className="ticketInfo">
-                <b>id:</b> {id}
-              </p>
+              {hash && (
+                <p className="ticketInfo">
+                  <b>address:</b> {hash}
+                </p>
+              )}
+              {id && (
+                <p className="ticketInfo">
+                  <b>Token id:</b> {id}
+                </p>
+              )}
               <img src={currentImg}></img>
             </div>
           </div>

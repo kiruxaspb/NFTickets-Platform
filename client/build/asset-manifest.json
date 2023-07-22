@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "./static/css/main.b8a3db6c.css",
+    "main.js": "./static/js/main.064700ae.js",
+    "static/media/bg.jpg": "./static/media/bg.4a1d56a0f8f274af58e6.jpg",
+    "static/media/spin.svg": "./static/media/spin.fbd3d055d1844a974be475bc8a944ce2.svg",
+    "static/media/key.svg": "./static/media/key.59882079982438cbd84c122a88f97b99.svg",
+    "static/media/wallet.svg": "./static/media/wallet.a6efb97050190acaf6994a6313051909.svg",
+    "static/media/success.svg": "./static/media/success.916757ee33616897d623ba7f225c4d90.svg",
+    "static/media/fast.svg": "./static/media/fast.9227655f9aca8267a2e347df4032ab8f.svg",
+    "static/media/star.svg": "./static/media/star.31c07b73de11c9cc24b4107db2463c65.svg",
+    "static/media/warning.svg": "./static/media/warning.4e5afa4165480c96adab0a51ee23f4e0.svg",
+    "static/media/shield.svg": "./static/media/shield.6a0bdd06d1133bc520327bd11f6c2dce.svg",
+    "static/media/nft.svg": "./static/media/nft.26cff8ce0dcd0b332fc5f3f99b1cba50.svg",
+    "static/media/error.svg": "./static/media/error.4f6a2b5845db1d64243030e6c8037c2b.svg",
+    "index.html": "./index.html",
+    "static/media/yes.svg": "./static/media/yes.7cf45b28381841264b6f29c2d3ce9d45.svg",
+    "main.b8a3db6c.css.map": "./static/css/main.b8a3db6c.css.map",
+    "main.064700ae.js.map": "./static/js/main.064700ae.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b8a3db6c.css",
+    "static/js/main.064700ae.js"
+  ]
+}
